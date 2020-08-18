@@ -3,7 +3,9 @@
 int	try_execute(char **cmd)
 {
 	pid_t	child_pid;
-	
+	int		status;
+	int		es;
+
 	child_pid = fork();
 	if (child_pid == 0)
 	{
@@ -11,6 +13,11 @@ int	try_execute(char **cmd)
 			exit(1);
 	}
 	else
-		wait(&child_pid);
+		waitpid(child_pid, &status, 0);
+	if (WIFEXITED(status))
+	{
+		es = WEXITSTATUS(status);
+		printf("es : %d\n", es);
+	}
 	return (0);
 }

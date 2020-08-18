@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yapark <yapark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jinbkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 19:11:11 by yapark            #+#    #+#             */
-/*   Updated: 2020/07/21 17:05:08 by yapark           ###   ########.fr       */
+/*   Updated: 2020/08/18 15:30:14 by jinbkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char	**ft_split(char const *s, char c);
 char	***parsing_cmds(char *line, int *cmd_num);
 void	builtins(char **cmd);
 int		try_execute(char **cmd);
-
+void	ft_putstr(char *s);
+void	ft_putstr_newline(char *s);
 #endif

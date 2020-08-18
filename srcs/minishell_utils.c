@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yapark <yapark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jinbkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 19:11:39 by yapark            #+#    #+#             */
-/*   Updated: 2020/07/21 13:39:33 by yapark           ###   ########.fr       */
+/*   Updated: 2020/08/18 15:30:25 by jinbkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,15 @@ char	*ft_strcat(char *s1, const char *s2)
 		s1[s1_len + i] = s2[i];
 	s1[s1_len + i] = '\0';
 	return (s1);
+}
+
+void	ft_putstr(char *s)
+{
+	write(1, s, ft_strlen(s));
+}
+
+void	ft_putstr_newline(char *s)
+{
+	ft_putstr(s);
+	write(1, "\n", 1);
 }
