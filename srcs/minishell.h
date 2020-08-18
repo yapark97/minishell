@@ -19,6 +19,8 @@
 # include <dirent.h>
 # include <string.h>
 # include <signal.h>
+# include <sys/wait.h>
+# include <errno.h>
 
 int		get_next_line(int fd, char **line);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
