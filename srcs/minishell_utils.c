@@ -45,3 +45,13 @@ void	ft_putstr_newline(char *s)
 	ft_putstr(s);
 	write(1, "\n", 1);
 }
+
+void	ft_putnbr(int n)
+{
+	char c;
+
+	if (n > 9)
+		ft_putnbr(n / 10);
+	c = n % 10 + '0';
+	write(1, &c, 1);
+}

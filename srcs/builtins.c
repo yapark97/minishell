@@ -20,7 +20,9 @@ void	builtins(char **cmd)
 			exit(1);
 		
 	}
-	write(1, buf, ft_strlen(buf));
+	char *temp;
+	temp = ft_strcat(buf, cmd[0]);
+	write(1, temp, ft_strlen(temp));
 	write(1, "\n", 1);
 	wait(0);
 	kill(child_pid, 0);

@@ -49,7 +49,7 @@ static void	exit_minishell(char ***cmds)
 	exit(99);
 }
 
-static void	read_cmds(char ***cmds, int cmd_num)
+static int	read_cmds(char ***cmds, int cmd_num, int pre_exit_code)
 {
 	int	i;
 
@@ -67,9 +67,15 @@ static void	read_cmds(char ***cmds, int cmd_num)
 			exit_minishell(cmds);
 		else if (ft_strncmp(cmds[i][0], "pid", 4) == 0)
 			printf("current pid : %d\n", getpid());
+		else if (ft_strncmp(cmds[i][0], "$?", 3) == 0)
+		{
+			ft_putnbr(pre_exit_code);
+			ft_putstr_newline(": command not found");
+		}
 		else
-			try_execute(cmds[i]);
+			pre_exit_code = try_execute(cmds[i]);
 	}
+	return (pre_exit_code);
 }
 
 int			main(void)
@@ -77,8 +83,10 @@ int			main(void)
 	char	*line;
 	char	***cmds;
 	int		cmd_num;
+	int		pre_exit_code;
 
 	//exit(1);
+	pre_exit_code = 0;
 	line = 0;
 	while (1)
 	{
@@ -93,7 +101,7 @@ int			main(void)
 		{
 			cmds = parsing_cmds(line, &cmd_num);
 			if (cmds)
-				read_cmds(cmds, cmd_num);
+				pre_exit_code = read_cmds(cmds, cmd_num, pre_exit_code);
 			free(line);
 			line = 0;
 			free_cmds(cmds);

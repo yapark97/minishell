@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 GNLSRC = gnl/get_next_line.c \
 		 gnl/get_next_line_utils.c
 
-#GNLOBJ = $(GNLSRC:.c=.o)
+GNLOBJ = $(GNLSRC:.c=.o)
 
 SRCS = srcs/minishell_main.c \
 	   srcs/minishell_cd.c \
@@ -34,12 +34,12 @@ all: $(NAME)
 # $(NAME): $(OBJS) $(GNLLIB)
 # 	$(CC) $(CFLAGS) -o $(NAME) -L. -lgnl $(SRCS)
 
-$(NAME): $(OBJS) $(GNLLIB)
+$(NAME): $(OBJS) $(GNLOBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(GNLSRC)
 
 
 clean :
-	rm $(GNLOBJ) $(OBJS) $(GNLLIB)
+	rm $(GNLOBJ) $(OBJS)
 
 fclean : clean
 	rm $(NAME)

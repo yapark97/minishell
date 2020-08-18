@@ -36,4 +36,5 @@ void	builtins(char **cmd);
 int		try_execute(char **cmd);
 void	ft_putstr(char *s);
 void	ft_putstr_newline(char *s);
+void    ft_putnbr(int n);
 #endif
