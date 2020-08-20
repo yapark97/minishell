@@ -61,7 +61,7 @@ static char	**set_ret_arr(int *len, int word_num)
 	return (ret);
 }
 
-static char	**empty_str(void)
+/*static char	**empty_str(void)
 {
 	char **ret;
 
@@ -69,7 +69,7 @@ static char	**empty_str(void)
 		return ((char**)0);
 	ret[0] = 0;
 	return (ret);
-}
+}*/
 
 char		**ft_split(char const *s, char c)
 {
@@ -82,7 +82,7 @@ char		**ft_split(char const *s, char c)
 	if (s == 0)
 		return ((char**)0);
 	if (*s == 0)
-		return (empty_str());
+		return ((char**)0);
 	word_num = find_word(s, c, word_index[0], word_index[1]);
 	i = -1;
 	if (!(ret = set_ret_arr(word_index[1], word_num)))

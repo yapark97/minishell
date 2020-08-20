@@ -17,8 +17,9 @@ sig_atomic_t sigflag = 0;
 
 static void catch_int(int sig_num)
 {
+	(void)sig_num;
 	sigflag = 1;
-	printf("sig_num : %d\n", sig_num);
+	ft_putstr("\nminishell$ ");
 }
 
 static void	free_cmds(char ***cmds)
@@ -88,18 +89,17 @@ int			main(void)
 	//exit(1);
 	pre_exit_code = 0;
 	line = 0;
+	signal(SIGINT, catch_int);
 	while (1)
 	{
-		write(1, "minishell$ ", 11);
-		signal(SIGINT, catch_int);
-
-		//printf("signal return value : %d\n", ret);
+		ft_putstr("minishell$ ");
 		if (get_next_line(0, &line) < 0)
 			break ;
-
 		if (line)
 		{
 			cmds = parsing_cmds(line, &cmd_num);
+			if (cmds == 0)
+				printf("cmds null\n");
 			if (cmds)
 				pre_exit_code = read_cmds(cmds, cmd_num, pre_exit_code);
 			free(line);
