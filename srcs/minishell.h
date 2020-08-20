@@ -37,4 +37,6 @@ int		try_execute(char **cmd);
 void	ft_putstr(char *s);
 void	ft_putstr_newline(char *s);
 void    ft_putnbr(int n);
+char    *ft_strdup(const char *s);
+
 #endif

@@ -55,3 +55,13 @@ void	ft_putnbr(int n)
 	c = n % 10 + '0';
 	write(1, &c, 1);
 }
+
+char *ft_strdup(const char *s)
+{
+	char *str;
+
+	str = (char*)malloc(ft_strlen(s) + 1);
+	str[0] = '\0';
+	ft_strcat(str, s);
+	return (str);
+}

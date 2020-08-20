@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <string.h>
 
 sig_atomic_t sigflag = 0;
 
-static void catch_int(int sig_num)
+static void catch_ctrl_c(int sig_num)
 {
 	(void)sig_num;
 	sigflag = 1;
@@ -45,9 +44,9 @@ static void	free_cmds(char ***cmds)
 
 static void	exit_minishell(char ***cmds)
 {
-	write(1, "exit\n", 5);
+	ft_putstr("exit\n");
 	free_cmds(cmds);
-	exit(99);
+	exit(1);
 }
 
 static int	read_cmds(char ***cmds, int cmd_num, int pre_exit_code)
@@ -87,8 +86,8 @@ int			main(void)
 	int		pre_exit_code;
 
 	pre_exit_code = 0;
+	signal(SIGINT, catch_ctrl_c);
 	line = 0;
-	signal(SIGINT, catch_int);
 	while (1)
 	{
 		if (sigflag == 0)
