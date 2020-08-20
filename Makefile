@@ -17,7 +17,8 @@ SRCS = srcs/minishell_main.c \
 	   srcs/parsing_cmd.c \
 	   srcs/builtins.c \
 	   srcs/ft_split.c \
-	   srcs/try_execute.c
+	   srcs/try_execute.c \
+	   srcs/do_echo.c
 
 OBJS = $(SRCS:.c=.o)
 

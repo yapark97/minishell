@@ -26,10 +26,7 @@ int		get_next_line(int fd, char **line);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(const char *s);
 char	*ft_strcat(char *s1, const char *s2);
-int		do_ls(char *line);
 int		do_cd(char *line);
-int		do_pwd(void);
-int		do_echo(char *line);
 char	**ft_split(char const *s, char c);
 char	***parsing_cmds(char *line, int *cmd_num);
 void	builtins(char **cmd);
@@ -38,5 +35,8 @@ void	ft_putstr(char *s);
 void	ft_putstr_newline(char *s);
 void    ft_putnbr(int n);
 char    *ft_strdup(const char *s);
+int do_echo(char ***cmds, int i);
+
+# define BUF_SIZE 1000
 
 #endif

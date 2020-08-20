@@ -58,9 +58,10 @@ static int	read_cmds(char ***cmds, int cmd_num, int pre_exit_code)
 	{
 		if (ft_strncmp(cmds[i][0], "cd", 3) == 0)
 			do_cd(cmds[i][1]);
+		else if (ft_strncmp(cmds[i][0], "echo", 5) == 0)
+			i += do_echo(cmds, i);
 		else if (ft_strncmp(cmds[i][0], "ls", 3) == 0 ||
 				ft_strncmp(cmds[i][0], "pwd", 4) == 0 ||
-				ft_strncmp(cmds[i][0], "echo", 5) == 0 ||
 				ft_strncmp(cmds[i][0], "env", 4) == 0)
 			builtins(cmds[i]);
 		else if (ft_strncmp(cmds[i][0], "exit", 5) == 0)
