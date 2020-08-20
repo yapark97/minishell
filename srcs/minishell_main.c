@@ -86,20 +86,20 @@ int			main(void)
 	int		cmd_num;
 	int		pre_exit_code;
 
-	//exit(1);
 	pre_exit_code = 0;
 	line = 0;
 	signal(SIGINT, catch_int);
 	while (1)
 	{
-		ft_putstr("minishell$ ");
+		if (sigflag == 0)
+			ft_putstr("minishell$ ");
+		else
+			sigflag = 0;
 		if (get_next_line(0, &line) < 0)
 			break ;
 		if (line)
 		{
 			cmds = parsing_cmds(line, &cmd_num);
-			if (cmds == 0)
-				printf("cmds null\n");
 			if (cmds)
 				pre_exit_code = read_cmds(cmds, cmd_num, pre_exit_code);
 			free(line);

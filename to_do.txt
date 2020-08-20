@@ -1,0 +1,5 @@
+echo "hello" 출력되는것 -> hello 바꾸기
+export
+unset
+env
+'" ~~~
