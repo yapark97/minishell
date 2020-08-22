@@ -4,23 +4,17 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
-#GNLLIB = libgnl.a
-
 GNLSRC = gnl/get_next_line.c \
 		 gnl/get_next_line_utils.c
 
 GNLOBJ = $(GNLSRC:.c=.o)
 
-SRCS = srcs/minishell_main.c \
-	   srcs/minishell_cd.c \
-	   srcs/minishell_utils.c \
-	   srcs/parsing_cmd.c \
-	   srcs/builtins.c \
-	   srcs/ft_split.c \
-	   srcs/try_execute.c \
-	   srcs/do_echo.c \
-	   srcs/do_env.c \
-	   srcs/parsing_env.c
+SRCS = srcs/main.c \
+	srcs/signals.c \
+	srcs/exit.c \
+	srcs/minishell_utils.c
+
+
 
 OBJS = $(SRCS:.c=.o)
 

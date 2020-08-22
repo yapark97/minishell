@@ -6,7 +6,7 @@
 /*   By: jinbkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 19:11:11 by yapark            #+#    #+#             */
-/*   Updated: 2020/08/18 15:30:14 by jinbkim          ###   ########.fr       */
+/*   Updated: 2020/08/22 19:18:30 by jinbkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include "../gnl/get_next_line.h"
+# define BUF_SIZE 1000
 
+char    *g_env[BUF_SIZE][2];
 int		get_next_line(int fd, char **line);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(const char *s);
@@ -29,14 +32,16 @@ char	*ft_strcat(char *s1, const char *s2);
 int		do_cd(char *line);
 char	**ft_split(char const *s, char c);
 char	***parsing_cmds(char *line, int *cmd_num);
+void    parsing_env(char **envp);
 void	builtins(char **cmd);
 int		try_execute(char **cmd);
 void	ft_putstr(char *s);
 void	ft_putstr_newline(char *s);
 void    ft_putnbr(int n);
 char    *ft_strdup(const char *s);
-int do_echo(char ***cmds, int i);
-
-# define BUF_SIZE 1000
+int     do_echo(char ***cmds, int i);
+void    do_env(void);
+void    do_export(char *str);
+void    do_unset(char *str);
 
 #endif

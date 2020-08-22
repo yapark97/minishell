@@ -6,7 +6,7 @@
 /*   By: jinbkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 19:12:06 by yapark            #+#    #+#             */
-/*   Updated: 2020/08/18 16:00:52 by jinbkim          ###   ########.fr       */
+/*   Updated: 2020/08/22 19:06:40 by jinbkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,14 @@ static int	read_cmds(char ***cmds, int cmd_num, int pre_exit_code)
 		else if (ft_strncmp(cmds[i][0], "echo", 5) == 0)
 			i += do_echo(cmds, i);
 		else if (ft_strncmp(cmds[i][0], "ls", 3) == 0 ||
-				ft_strncmp(cmds[i][0], "pwd", 4) == 0 ||
-				ft_strncmp(cmds[i][0], "env", 4) == 0)
+				ft_strncmp(cmds[i][0], "pwd", 4) == 0 )
 			builtins(cmds[i]);
+		else if (ft_strncmp(cmds[i][0], "env", 4) == 0)
+			do_env();
+		else if (ft_strncmp(cmds[i][0], "export", 7) == 0)
+			do_export(cmds[i][1]);
+		else if (ft_strncmp(cmds[i][0], "unset", 6) == 0)
+			do_unset(cmds[i][1]);
 		else if (ft_strncmp(cmds[i][0], "exit", 5) == 0)
 			exit_minishell(cmds);
 		else if (ft_strncmp(cmds[i][0], "pid", 4) == 0)
@@ -79,7 +84,11 @@ static int	read_cmds(char ***cmds, int cmd_num, int pre_exit_code)
 	return (pre_exit_code);
 }
 
-int			main(void)
+void catch_signals() {
+	signal(SIGINT, catch_ctrl_c);
+}
+
+int			main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	char	***cmds;
@@ -87,8 +96,12 @@ int			main(void)
 	int		pre_exit_code;
 
 	pre_exit_code = 0;
-	signal(SIGINT, catch_ctrl_c);
+	catch_signals();
+	
+	(void)argc;
+	(void)argv;
 	line = 0;
+	parsing_env(envp);
 	while (1)
 	{
 		if (sigflag == 0)

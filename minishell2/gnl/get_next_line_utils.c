@@ -25,7 +25,7 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strncpy(char *str, int size)
+char	*ft_strndup(char *str, int size)
 {
 	int		i;
 	char	*ret;
@@ -38,7 +38,7 @@ char	*ft_strncpy(char *str, int size)
 	return (ret);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int free_s2)
+char	*str_join_free(char *s1, char *s2, int free_s2)
 {
 	int		i;
 	int		s1_len;
@@ -64,7 +64,7 @@ char	*ft_strjoin(char *s1, char *s2, int free_s2)
 	return (ret);
 }
 
-int		ft_strchr(char *str, char c)
+int		index_of(char *str, char c)
 {
 	int i;
 
