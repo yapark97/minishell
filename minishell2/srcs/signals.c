@@ -7,7 +7,7 @@ static void catch_sigint()
 
 static void catch_sigquit()
 {
-    
+    ft_putstr("Quit: 3\nminishell$ ");
 }
 
 void catch_signals()
