@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **envp)
 
     (void)argc;
     (void)argv;
-    g_envp = envp;
+    g_envp = copy_2d_arr(envp, MAX);
     catch_signals();
     while (1)
     {

@@ -24,6 +24,7 @@ void exit_minishell(char ***cmds)
 {
     if (cmds)
         free_3d_arr(cmds);
+    free_2d_arr(g_envp);
     ft_putstr_newline("exit");
     exit(0);
 }

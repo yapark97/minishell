@@ -25,8 +25,8 @@ static int	read_file(int fd, t_file *file)
 		if ((len = read(fd, file->buf, BUFFER_SIZE)) < 0)
 			return (-1);
 		file->buf[len] = '\0';
-		file->line = ft_strjoin(file->line, file->buf, 0);
-		nl_idx = ft_strchr(file->line, '\n');
+		file->line = str_join_free(file->line, file->buf, 0);
+		nl_idx = index_of(file->line, '\n');
 		if (len < BUFFER_SIZE && nl_idx == -1)
 			eof = 0;
 	}
@@ -42,25 +42,25 @@ static int	update_file(int fd, t_file *file)
 	char	*temp;
 
 	temp = 0;
-	new_buf_idx = ft_strchr(file->buf + file->buf_idx + 1, '\n')
+	new_buf_idx = index_of(file->buf + file->buf_idx + 1, '\n')
 		+ file->buf_idx + 1;
 	if (file->buf_idx > -1 && new_buf_idx > file->buf_idx)
 	{
-		file->line = ft_strncpy(file->buf + file->buf_idx + 1,
+		file->line = ft_strndup(file->buf + file->buf_idx + 1,
 				new_buf_idx - file->buf_idx - 1);
 		file->buf_idx = new_buf_idx;
 		return (1);
 	}
 	if (file->buf_idx > -1)
 	{
-		temp = ft_strncpy(file->buf + file->buf_idx + 1,
+		temp = ft_strndup(file->buf + file->buf_idx + 1,
 				BUFFER_SIZE - file->buf_idx - 1);
 	}
 	if ((eof = read_file(fd, file)) == -1)
 		return (eof);
 	if (temp)
-		file->line = ft_strjoin(temp, file->line, 1);
-	file->buf_idx = ft_strchr(file->buf, '\n');
+		file->line = str_join_free(temp, file->line, 1);
+	file->buf_idx = index_of(file->buf, '\n');
 	return (eof);
 }
 
@@ -79,7 +79,7 @@ int			get_next_line(int fd, char **line)
 	file->line = 0;
 	if ((eof = update_file(fd, file)) == -1)
 		return (eof);
-	*line = ft_strncpy(file->line, ft_strlen(file->line));
+	*line = ft_strndup(file->line, ft_strlen(file->line));
 	free(file->line);
 	file->line = 0;
 	if (eof == 0)

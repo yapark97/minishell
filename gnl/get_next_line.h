@@ -26,8 +26,8 @@ typedef struct	s_file
 }				t_file;
 int				get_next_line(int fd, char **line);
 int				ft_strlen(const char *str);
-char			*ft_strncpy(char *str, int size);
-char			*ft_strjoin(char *s1, char *s2, int free_s2);
-int				ft_strchr(char *str, char c);
+char			*ft_strndup(char *str, int size);
+char			*str_join_free(char *s1, char *s2, int free_s2);
+int				index_of(const char *str, char c);
 
 #endif

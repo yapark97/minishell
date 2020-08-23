@@ -1,6 +1,0 @@
-UID        PID  PPID  C STIME TTY          TIME CMD
-root         1     0  0 14:18 ?        00:00:00 /init
-root      1166     1  0 19:24 tty1     00:00:00 /init
-yapark    1167  1166  0 19:24 tty1     00:00:00 -bash
-yapark    1366  1167  0 23:51 tty1     00:00:00 bash
-yapark    1432  1366  0 23:57 tty1     00:00:00 ps -ef
