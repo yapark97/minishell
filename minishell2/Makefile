@@ -10,9 +10,16 @@ GNLSRC = gnl/get_next_line.c \
 GNLOBJ = $(GNLSRC:.c=.o)
 
 SRCS = srcs/main.c \
+	srcs/parsing_cmds.c \
+	srcs/split_cmds.c \
+	srcs/extract_cmds.c \
+	srcs/builtins.c \
+	srcs/excutables.c \
+	srcs/exec.c \
 	srcs/signals.c \
 	srcs/exit.c \
-	srcs/minishell_utils.c
+	srcs/minishell_utils.c \
+	srcs/ft_split.c
 
 
 

@@ -64,7 +64,7 @@ char	*str_join_free(char *s1, char *s2, int free_s2)
 	return (ret);
 }
 
-int		index_of(char *str, char c)
+int		index_of(const char *str, char c)
 {
 	int i;
 

@@ -28,6 +28,6 @@ int				get_next_line(int fd, char **line);
 int				ft_strlen(const char *str);
 char			*ft_strndup(char *str, int size);
 char			*str_join_free(char *s1, char *s2, int free_s2);
-int				index_of(char *str, char c);
+int				index_of(const char *str, char c);
 
 #endif
