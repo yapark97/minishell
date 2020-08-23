@@ -47,8 +47,10 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 char	*ft_strdup(const char *s);
 char	*ft_strcpy(char *dst, const char *src);
 char	**copy_2d_arr(char **arr, int size);
+void	print_2d_arr(char **arr);
 //void	add_2d_arr(char **arr, char *str);
 //void	delete_2d_arr(char **arr, int i);
 char	**ft_split(char const *s, char c);
+char    *ft_itoa(int k);
 
 #endif

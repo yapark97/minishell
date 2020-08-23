@@ -10,6 +10,8 @@ static char *find_path(char *cmd)
 
     i = -1;
     //relative path 실행파일 해보고 안되면 추가
+    if (!stat(cmd, &sb))
+        return (ft_strdup(cmd));
     while (g_envp[++i])
     {
         if (!ft_strncmp(g_envp[i], "PATH=", 5))
@@ -85,11 +87,14 @@ int excutables(int fd_o, int fd_i, char **argv)
             dup2(fd_o, 1);
         if (fd_i != 0)
             dup2(fd_i, 0);
-        execve(path, argv, g_envp);
+        if (execve(path, argv, g_envp) == -1)
+            exit(10);
     }
     else
     {
         waitpid(child, &status, 0);
+        if (status == 2560)
+            return (0);
         g_exit_code = status / 256;
         free(path);
     }

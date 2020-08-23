@@ -26,6 +26,9 @@ int main(int argc, char **argv, char **envp)
 
     (void)argc;
     (void)argv;
+    char *temp;
+    temp = ft_itoa(0);
+    free(temp);
     g_envp = copy_2d_arr(envp, MAX);
     catch_signals();
     while (1)

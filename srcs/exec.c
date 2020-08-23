@@ -89,8 +89,11 @@ void exec_cmds(char ***cmds)
         {
 
         }
-            //redirections(cmds[i]) ||
-            //pipes(cmds[i]) ||
-            //excutables(1, cmds[i]))
+        else
+        {
+            print_2d_arr(cmds[i]);
+            ft_putstr_newline(": command not found");
+        }
+        
     }
 }

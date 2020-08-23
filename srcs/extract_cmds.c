@@ -8,6 +8,12 @@ static void replace_env(char **str)
     if (*str[0] != '$')
         return;
     i = -1;
+    if (!ft_strcmp(str[0], "$?"))
+    {
+        free(str[0]);
+        str[0] = ft_itoa(g_exit_code);
+        return;
+    }
     while (g_envp[++i])
     {
         idx = index_of(g_envp[i], '=');
@@ -15,7 +21,6 @@ static void replace_env(char **str)
         {
             free(*str);
             *str = ft_strdup(g_envp[i] + idx + 1);
-            return;
         }
     }
 }

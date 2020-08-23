@@ -90,6 +90,45 @@ char	**copy_2d_arr(char **arr, int size)
 	return (ret);
 }
 
+char *ft_itoa(int k)
+{
+	int i;
+	int j;
+	int temp;
+	char *ret;
+
+	i = 1;
+	temp = k;
+	while (temp > 9)
+	{
+		i++;
+		temp = temp / 10;
+	}
+	ret = (char*)malloc(sizeof(char) * (i + 1));
+	ret[i] = 0;
+	j = i;
+	temp = k;
+	while (--j >= 0)
+	{
+		ret[j] = temp % 10 + '0';
+		temp = temp / 10;
+	}
+	return (ret);
+}
+
+void	print_2d_arr(char **arr)
+{
+	int i;
+
+	i = -1;
+	while (arr[++i])
+	{
+		ft_putstr(arr[i]);
+		if (arr[i + i])
+			write(1, " ", 1);
+	}
+}
+
 /*void	add_2d_arr(char **arr, char *str)
 {
 	int i;
