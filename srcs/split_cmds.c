@@ -41,20 +41,19 @@ static int  count_arg_num(char *str, int quotes[], int idxs[][2])
     while (++i >= 0)
     {
         if (!str[i] || ((str[i] == '|' || str[i] == '<' || str[i] == '>'
-            || str[i] == '|' || str[i] == ' ') && !quotes[i]))
+            || str[i] == ' ') && !quotes[i]))
         {
             if (!len && !str[i])
                 break ;
             else if (!len && str[i] == ' ')
                 continue ;
-            if (len && (str[i] == '|' || str[i] == '<' || str[i] == '>'
-                || str[i] == '|'))
+            if (len && (str[i] == '|' || str[i] == '<' || str[i] == '>'))
             {
                 //abc 먼저 자르기
                 idxs[arg_num][1] = len;
                 idxs[arg_num++][0] = i - len;
             }
-            if (str[i] == '|' || str[i] == '<' || str[i] == '>' || str[i] == '|')
+            if (str[i] == '|' || str[i] == '<' || str[i] == '>')
             {
                 idxs[arg_num][1] = str[i + 1] == '>' ? 2 : 1;
                 idxs[arg_num][0] = i;
@@ -102,7 +101,7 @@ char ***split_cmds(char *str, int quotes[])
     int arg_quotes[ft_strlen(str)];
     int arg_idxs[ft_strlen(str)][2];
 
-    cmd_num = count_cmd_num(str, quotes, idxs);
+    cmd_num = count_cmd_num(str, quotes, idxs);  // 명령어 개수
     temp = split_arr(str, cmd_num, idxs);
     i = -1;
     ret = (char***)malloc(sizeof(char**) * (cmd_num + 1));

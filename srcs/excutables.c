@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+
+extern int errno;
 static char *find_path(char *cmd)
 {
     int i;
@@ -43,7 +45,7 @@ void pipes_exec(char **cmd1, char **cmd2)
 
     path1 = find_path(cmd1[0]);
     path2 = find_path(cmd2[0]);
-    
+
     child = fork();
     if (!child)
     {
@@ -70,7 +72,7 @@ void pipes_exec(char **cmd1, char **cmd2)
         free(path1);
         free(path2);
     }
-    
+
 }
 
 int excutables(int fd_o, int fd_i, char **argv)
@@ -88,16 +90,13 @@ int excutables(int fd_o, int fd_i, char **argv)
         if (fd_i != 0)
             dup2(fd_i, 0);
         if (execve(path, argv, g_envp) == -1)
-            exit(10);
+            return (0);
     }
     else
     {
         waitpid(child, &status, 0);
-        if (status == 2560)
-            return (0);
         g_exit_code = status / 256;
         free(path);
     }
-    
     return (1);
 }

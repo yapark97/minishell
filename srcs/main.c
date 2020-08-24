@@ -10,7 +10,7 @@
         j = -1;
         while (cmds[i][++j])
         {
-            
+
             ft_putstr(cmds[i][j]);
             write(1, "/", 1);
         }
@@ -22,13 +22,10 @@ int main(int argc, char **argv, char **envp)
 {
     char *line;
     char ***cmds;
-    
+
 
     (void)argc;
     (void)argv;
-    char *temp;
-    temp = ft_itoa(0);
-    free(temp);
     g_envp = copy_2d_arr(envp, MAX);
     catch_signals();
     while (1)
@@ -41,6 +38,5 @@ int main(int argc, char **argv, char **envp)
         //print_cmds(cmds);
         free_3d_arr(cmds);
     }
-    
     return (0);
 }

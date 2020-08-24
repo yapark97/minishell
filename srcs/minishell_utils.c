@@ -124,7 +124,7 @@ void	print_2d_arr(char **arr)
 	while (arr[++i])
 	{
 		ft_putstr(arr[i]);
-		if (arr[i + i])
+		if (arr[i + 1])
 			write(1, " ", 1);
 	}
 }

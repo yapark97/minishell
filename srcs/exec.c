@@ -8,20 +8,23 @@ static void redir_out(char **cmd, const char *file, int overwrite)
         fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
     else
         fd = open(file, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
-    printf("fd : %d\n", fd);
+
     excutables(fd, 0, cmd);
     close(fd);
 }
 
-static void redir_in(char **cmd, const char *file, int i)
+static void redir_in(char **cmd, const char *file)
 {
     int fd;
-    char **new_cmd;
 
-    fd = open(file, O_RDONLY);
-    new_cmd = copy_2d_arr(cmd, i);
-    excutables(1, fd, new_cmd);
-    free_2d_arr(new_cmd);
+    if ((fd = open(file, O_RDONLY)) == -1)
+    {
+        ft_putstr("bash: ");
+        ft_putstr(file);
+        ft_putstr_newline(": No such file or directory");
+        return ;
+    }
+    excutables(1, fd, cmd);
     close(fd);
 }
 
@@ -37,7 +40,7 @@ static int redirections(char **cmd)
         if (!ft_strcmp(cmd[i], "<") || !ft_strcmp(cmd[i], ">") || !ft_strcmp(cmd[i], ">>"))
             cmd_cpy = copy_2d_arr(cmd, i);
         if (!ft_strcmp(cmd[i], "<"))
-            redir_in(cmd_cpy, cmd[i + 1], i);
+            redir_in(cmd_cpy, cmd[i + 1]);
         else if (!ft_strcmp(cmd[i], ">"))
             redir_out(cmd_cpy, cmd[i + 1], 1);
         else if (!ft_strcmp(cmd[i], ">>"))
@@ -78,7 +81,7 @@ static int pipes(char **cmd)
 void exec_cmds(char ***cmds)
 {
     int i;
-    
+
     i = -1;
     while (cmds[++i])
     {
@@ -91,9 +94,11 @@ void exec_cmds(char ***cmds)
         }
         else
         {
+            ft_putstr("minishell: ");
             print_2d_arr(cmds[i]);
             ft_putstr_newline(": command not found");
+            exit(1); //자식프로세스종료
         }
-        
+
     }
 }
