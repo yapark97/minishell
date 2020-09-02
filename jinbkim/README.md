@@ -1,8 +1,3 @@
-pipe 함수사용
-pipe close 해야하는 이유
-wait waitpid 함수
-
-
 1. copy_wd_arr 함수에서 size가 -1이 들어오는 경우 -1을 AUTO_SIZE라고 디파인 해놓음
 2. if (!get_next_line(0, &line) && line[0] == '\0') line[0] == '\0' 이면 애초에 gnl의 리턴값이 0이되기때문에 line[0] == '\0'를 지움
 3. quote 상태를 -3~3 으로 enum을 이용해서 표현함
