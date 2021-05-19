@@ -1,54 +1,27 @@
-#ctrl - c 
-: 시그널. signal(SIGINT ...) 함수로 capture
-디폴트 : null
-bash 에서 : 현재 실행중인 프로세스를 종료.
+# 42_minishell
 
+***
 
-#ctrl - d : 시그널이 아님.
-터미널이 입력상태일때 컨트롤디 - 입력 끝 (EOF)
-엔터랑 비슷한데 개행없이...
+## About
+* 간단한 bash shell을 만들어 보는 42서울의 프로젝트입니다.
+* 프롬프트의 입력을 파싱하고, 몇가지 빌트인 함수를 실행, 실행 파일을 시작할 수 있는 프로그램입니다.
 
-gnl에서 리턴값이 0이댐.. > bash 종료
+![](https://i.ibb.co/PZ2GC9P/image.png)
+***
 
-#ctrl - \
-:시그널 (SIGQUIT) - 프로세스를 모두 종료시킨 뒤 코어 덤프.
-코어덤프를 구현해야되는건 아니겠지...?
-걍 quit: 3 출력하고 sigint랑 똑같이 햇음 ;
-이거 좀 나중에....
+## How to use
+```
+git clone https://github.com/yapark97/42_minishell.git
+cd 42_minishell
+make
+./minishell
+```
+***
 
-
-'' & "" 로 감싸지는것
-echo cd pwd 
-
-안감싸지는것
-환경변수
-
-환경변수처리 
->다음에
-'' "" 풀기
-
-$aa .. > cd .. 이런것도 됨
-
-예외처리 $? 해주기 ('$?'는 안되게)
-아니면 음 환경변수 ?에 exit code 저장...
-
-
-'ls|'grep .c 안됨
-'ls'|grep .c 됨
-quote 떼기전에 띄어쓰기먼저 해주기
-
-리다이렉션
-에러출력 리다이렉션 (fifle 2> file3.txt) 이런것도 있는데 무시하고..
-걍
-< file (입력)
-> file (출력. 덮어쓰기) : O_WRONLY | O_CREAT | O_TRUNC 
->> file (출력. 내용추가) : O_APPEND | O_CREAT | O_WRONLY append 없으면 첫줄로
-이거만 하겟슴
-
-lstat / stat/ fstat ??
-> 파일 상태
-
-
-env 관련
-#예외처리 할지???
-환경변수이름으로 #이런거 못쓰는듯??? 아 걍 하지말자
+## Available options
+* echo with option '-n'
+* cd, pwd, export, unset, env, exit
+* ;로 구분된 다중 command
+* Redirections(<, >, >>), Pipes (|)
+* 환경변수 ($)
+* multi line command (', " 가 닫히지 않았을 때)
